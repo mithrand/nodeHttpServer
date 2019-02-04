@@ -2,19 +2,8 @@ const path = require('path');
 const fs = require('fs');
 const config  =  require('../config');
 
-const dataFilePath = path.join( __dirname , config.dataPath);
+const dataFilePath = path.join(config.dataPath);
 let users = [];
-
-const InitService = () => {
-  const user = fs.readFile(dataFilePath, { encoding: 'utf8' },  (error, data) => {
-    if(error) {
-      users = [];
-      console.error(error, 'dataService - Error in loadUsers()');
-      return;
-    }
-    users = JSON.parse(data);
-  });
-}
 
 const saveUsers = () => {
   const data = JSON.stringify(users);
@@ -24,10 +13,22 @@ const saveUsers = () => {
   });
 }
 
-
-InitService();
-
 const userDataService = {
+  start: () => new Promise((resolve, reject) => {
+    const user = fs.readFile(dataFilePath, { encoding: 'utf8' },  (error, data) => {
+      if(error) {
+        users = [];
+        console.error(error, 'dataService - Error in loadUsers()');
+        return reject();
+      }
+      if(!data) {
+        users = [];
+        return resolve();;
+      }
+      users = JSON.parse(data);
+      return resolve();
+    });
+  }),
   getUsers: () => users,
   getUser: (name) => users.find(user => user.name = name),
   deleteUser: (name) => {

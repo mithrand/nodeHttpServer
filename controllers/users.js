@@ -4,7 +4,7 @@ const dataService = require('../services/dataService');
 
 const get =  render((req,res) => {
   const users  = dataService.getUsers();
-  const userList = users.reduce((htlm, user) => `${html} <li>${user.name}</li>`  , '');
+  const userList = users.reduce((html, user) => `${html} <li>${user.name}</li>`  , '');
   res.write(`<ul>${userList}</ul>`);
 });
 

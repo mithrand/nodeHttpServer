@@ -1,0 +1,26 @@
+{
+  "name": "httpsever",
+  "version": "1.0.0",
+  "description": "custom http server",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mithrand/nodeHttpServer.git"
+  },
+  "keywords": [
+    "http"
+  ],
+  "author": "amt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mithrand/nodeHttpServer/issues"
+  },
+  "homepage": "https://github.com/mithrand/nodeHttpServer#readme",
+  "dependencies": {
+    "http-status-codes": "^1.3.0"
+  }
+}
